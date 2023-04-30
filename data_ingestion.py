@@ -2,6 +2,11 @@ from concurrent import futures
 import csv
 import queue
 from dbutils import DBHandler
+from thelogger import getmylogger
+
+logger = getmylogger(__name__)
+
+
 class BulkIngestionHandler:
 
     def __init__(self,multi_insert_limit,workers):

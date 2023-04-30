@@ -1,9 +1,12 @@
 import os
 from data_ingestion import BulkIngestionHandler
-
+from thelogger import getmylogger
+import json
+logger = getmylogger(__name__)
 
 if __name__ == "__main__":
 
+    logger.info('ingestion start')
     # initiate database handler object
     bulk_ingestion = BulkIngestionHandler(multi_insert_limit=1000,workers=4)
 
@@ -20,18 +23,15 @@ if __name__ == "__main__":
     }
 
     # Database connection parameters
-    conn_params = {
-        "server": "localhost",
-        "database": "******",
-        "user": "******",
-        "password": "******",
-        "port": 1433,
-        "driver": "******",
-    }
+
+    conn_params = json.load(open(os.path.join(os.getcwd(),"config.json")))
+
     # Data file path
     file_path = os.path.join(os.getcwd(),'data.csv')
 
     bulk_ingestion.load_csv(file_path, table_def, conn_params)
+    logger.info('ingestion end')
+
 
 
 

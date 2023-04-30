@@ -1,6 +1,11 @@
 data.csv
 
-.idea
+.idea/*
 
 venv
 
+config.json
+
+logfile.log
+
+__pycache__
