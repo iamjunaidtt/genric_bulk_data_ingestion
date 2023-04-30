@@ -20,6 +20,7 @@ class BulkIngestionHandler:
             reader = csv.reader(in_file, delimiter=",")
             next(reader)
             for row in reader:
+                logger.debug(f"row : {row}")
                 yield row
 
     def process_row(self,row, batch, table_name, conn_params):
@@ -28,9 +29,10 @@ class BulkIngestionHandler:
             self.dbhandler.multi_row_insert(batch, table_name, conn_params)
         return batch
 
-    def load_csv(self,csv_file, table_def, conn_params):
+    def load_csv(self,csv_file, table_def, conn_params,append=False):
         # Optional, drops table if it exists before creating
-        self.dbhandler.make_table(table_def, conn_params)
+        if not append:
+            self.dbhandler.make_table(table_def, conn_params)
 
         batch = queue.Queue(self.MULTIROW_INSERT_LIMIT)
 

@@ -2,8 +2,6 @@ import pyodbc
 from pypika import Column, Query, Table
 from thelogger import getmylogger
 
-
-
 class DBHandler:
 
     def __init__(self):

@@ -2,6 +2,7 @@ import os
 from data_ingestion import BulkIngestionHandler
 from thelogger import getmylogger
 import json
+
 logger = getmylogger(__name__)
 
 if __name__ == "__main__":
@@ -29,8 +30,11 @@ if __name__ == "__main__":
     # Data file path
     file_path = os.path.join(os.getcwd(),'data.csv')
 
-    bulk_ingestion.load_csv(file_path, table_def, conn_params)
-    logger.info('ingestion end')
+    bulk_ingestion.load_csv(file_path, table_def, conn_params,append=True)
+
+    logger.info('ingestion end----')
+
+
 
 
 
