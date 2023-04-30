@@ -1,8 +1,8 @@
 {
         "server": "localhost",
         "database": "bulkdb",
-        "user": "sa",
-        "password": "admin@123",
-        "port": 1433,
+        "user": "****",
+        "password": "*****",
+        "port": *****,
         "driver": "ODBC Driver 17 for SQL Server"
 }
